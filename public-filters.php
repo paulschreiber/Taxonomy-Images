@@ -18,15 +18,15 @@
  */
 
 
-add_filter( 'taxonomy-images-get-terms',      'taxonomy_images_plugin_get_terms', 10, 2 );
-add_filter( 'taxonomy-images-get-the-terms',  'taxonomy_images_plugin_get_the_terms', 10, 2 );
-add_filter( 'taxonomy-images-list-the-terms', 'taxonomy_images_plugin_list_the_terms', 10, 2 );
+add_filter( 'taxonomy_images_get_terms',      'taxonomy_images_plugin_get_terms', 10, 2 );
+add_filter( 'taxonomy_images_get_the_terms',  'taxonomy_images_plugin_get_the_terms', 10, 2 );
+add_filter( 'taxonomy_images_list_the_terms', 'taxonomy_images_plugin_list_the_terms', 10, 2 );
 
-add_filter( 'taxonomy-images-queried-term-image',        'taxonomy_images_plugin_get_queried_term_image', 10, 2 );
-add_filter( 'taxonomy-images-queried-term-image-data',   'taxonomy_images_plugin_get_queried_term_image_data', 10, 2 );
-add_filter( 'taxonomy-images-queried-term-image-id',     'taxonomy_images_plugin_get_queried_term_image_id' );
-add_filter( 'taxonomy-images-queried-term-image-object', 'taxonomy_images_plugin_get_queried_term_image_object' );
-add_filter( 'taxonomy-images-queried-term-image-url',    'taxonomy_images_plugin_get_queried_term_image_url', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image',        'taxonomy_images_plugin_get_queried_term_image', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image_data',   'taxonomy_images_plugin_get_queried_term_image_data', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image_id',     'taxonomy_images_plugin_get_queried_term_image_id' );
+add_filter( 'taxonomy_images_queried_term_image_object', 'taxonomy_images_plugin_get_queried_term_image_object' );
+add_filter( 'taxonomy_images_queried_term_image_url',    'taxonomy_images_plugin_get_queried_term_image_url', 10, 2 );
 
 
 /**
@@ -63,11 +63,11 @@ add_filter( 'taxonomy-images-queried-term-image-url',    'taxonomy_images_plugin
  * @param     array     Named arguments. Please see above for explantion.
  * @return    array     List of term objects.
  *
- * @access    private   Use the 'taxonomy-images-get-terms' filter.
+ * @access    private   Use the 'taxonomy_images_get_terms' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
-	$filter = 'taxonomy-images-get-terms';
+	$filter = 'taxonomy_images_get_terms';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -155,11 +155,11 @@ function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
  * @param     array     Named arguments. Please see above for explantion.
  * @return    array     List of term objects. Empty array if none were found.
  *
- * @access    private   Use the 'taxonomy-images-get-the-terms' filter.
+ * @access    private   Use the 'taxonomy_images_get_the_terms' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
-	$filter = 'taxonomy-images-get-the-terms';
+	$filter = 'taxonomy_images_get_the_terms';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -245,11 +245,11 @@ function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
  * @param     array     Named arguments. Please see above for explantion.
  * @return    string    HTML markup.
  *
- * @access    private   Use the 'taxonomy-images-list-the-terms' filter.
+ * @access    private   Use the 'taxonomy_images_list_the_terms' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
-	$filter = 'taxonomy-images-list-the-terms';
+	$filter = 'taxonomy_images_list_the_terms';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -270,7 +270,7 @@ function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
 		return '';
 	}
 
-	$terms = apply_filters( 'taxonomy-images-get-the-terms', '', $args );
+	$terms = apply_filters( 'taxonomy_images_get_the_terms', '', $args );
 
 	if ( empty( $terms ) ) {
 		return '';
@@ -319,11 +319,11 @@ function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
  * @param     array     Named array of arguments.
  * @return    string    HTML markup for the associated image.
  *
- * @access    private   Use the 'taxonomy-images-queried-term-image' filter.
+ * @access    private   Use the 'taxonomy_images_queried_term_image' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_queried_term_image( $default, $args = array() ) {
-	$filter = 'taxonomy-images-queried-term-image';
+	$filter = 'taxonomy_images_queried_term_image';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -335,7 +335,7 @@ function taxonomy_images_plugin_get_queried_term_image( $default, $args = array(
 		'image_size' => 'thumbnail',
 		) );
 
-	$ID = apply_filters( 'taxonomy-images-queried-term-image-id', 0 );
+	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
 	if ( empty( $ID ) ) {
 		return '';
@@ -364,16 +364,16 @@ function taxonomy_images_plugin_get_queried_term_image( $default, $args = array(
  *
  * This function should never be called directly in any file
  * however it may be access in any template file via the
- * 'taxonomy-images-queried-term-image-id' filter.
+ * 'taxonomy_images_queried_term_image_id' filter.
  *
  * @param     mixed     Default value for apply_filters() to return. Unused.
  * @return    int       Image attachment's ID.
  *
- * @access    private   Use the 'taxonomy-images-queried-term-image-id' filter.
+ * @access    private   Use the 'taxonomy_images_queried_term_image_id' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
-	$filter = 'taxonomy-images-queried-term-image-id';
+	$filter = 'taxonomy_images_queried_term_image_id';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -419,21 +419,21 @@ function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
  *
  * This function should never be called directly in any file
  * however it may be access in any template file via the
- * 'taxonomy-images-queried-term-image' filter.
+ * 'taxonomy_images_queried_term_image' filter.
  *
  * @param     mixed          Default value for apply_filters() to return. Unused.
  * @return    stdClass       WordPress Post object.
  *
- * @access    private        Use the 'taxonomy-images-queried-term-image-object' filter.
+ * @access    private        Use the 'taxonomy_images_queried_term_image_object' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_queried_term_image_object( $default ) {
-	$filter = 'taxonomy-images-queried-term-image-object';
+	$filter = 'taxonomy_images_queried_term_image_object';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$ID = apply_filters( 'taxonomy-images-queried-term-image-id', 0 );
+	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
 	$image = new stdClass;
 	if ( ! empty( $ID ) ) {
@@ -464,11 +464,11 @@ function taxonomy_images_plugin_get_queried_term_image_object( $default ) {
  * @param     array          Named Arguments.
  * @return    string         Image URL.
  *
- * @access    private        Use the 'taxonomy-images-queried-term-image-url' filter.
+ * @access    private        Use the 'taxonomy_images_queried_term_image_url' filter.
  * @since     0.7
  */
 function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = array() ) {
-	$filter = 'taxonomy-images-queried-term-image-url';
+	$filter = 'taxonomy_images_queried_term_image_url';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -477,7 +477,7 @@ function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = ar
 		'image_size' => 'thumbnail',
 		) );
 
-	$data = apply_filters( 'taxonomy-images-queried-term-image-data', array(), $args );
+	$data = apply_filters( 'taxonomy_images_queried_term_image_data', array(), $args );
 
 	$url = '';
 	if ( isset( $data['url'] ) ) {
@@ -509,12 +509,12 @@ function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = ar
  * @param     array          Named Arguments.
  * @return    array          Image data: url, width and height.
  *
- * @access    private        Use the 'taxonomy-images-queried-term-image-data' filter.
+ * @access    private        Use the 'taxonomy_images_queried_term_image_data' filter.
  * @since     0.7
  * @alter     0.7.2
  */
 function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = array() ) {
-	$filter = 'taxonomy-images-queried-term-image-data';
+	$filter = 'taxonomy_images_queried_term_image_data';
 	if ( $filter !== current_filter() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
@@ -523,7 +523,7 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 		'image_size' => 'thumbnail',
 		) );
 
-	$ID = apply_filters( 'taxonomy-images-queried-term-image-id', 0 );
+	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
 	if ( empty( $ID ) ) {
 		return array();

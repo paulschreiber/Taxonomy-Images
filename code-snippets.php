@@ -12,7 +12,7 @@ exit;
  * Append the term images to content + excerpt.
  */
 function mytheme_append_the_term_images( $content ) {
-	return $content . apply_filters( 'taxonomy-images-list-the-terms', '', array(
+	return $content . apply_filters( 'taxonomy_images_list_the_terms', '', array(
 		'image_size' => 'detail',
 		) );
 }
@@ -34,38 +34,38 @@ add_filter( 'the_excerpt', 'mytheme_append_the_term_images' );
 
 
 /* Default */
-$img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUGIN' );
-print '<h2>taxonomy-images-queried-term-image</h2>';
+$img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN' );
+print '<h2>taxonomy_images_queried_term_image</h2>';
 print '<pre>' . htmlentities( $img ) . '</pre>';
 
 
 /* Inside a yellow box */
-$img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN', array(
 	'before' => '<div style="padding:20px;background-color:yellow;">',
 	'after'  => '</div>',
 	) );
-print '<h2>taxonomy-images-queried-term-image - custom wrapper element.</h2>';
+print '<h2>taxonomy_images_queried_term_image - custom wrapper element.</h2>';
 print '<pre>' . htmlentities( $img ) . '</pre>';
 
 
 /* Medium Size */
-$img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'medium',
 	) );
-print '<h2>taxonomy-images-queried-term-image - medium image size</h2>';
+print '<h2>taxonomy_images_queried_term_image - medium image size</h2>';
 print '<pre>' . htmlentities( $img ) . '</pre>';
 
 
 /* Unrecognized size */
-$img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'this-is-probably-not-a-real-image-size',
 	) );
-print '<h2>taxonomy-images-queried-term-image - unknown image size</h2>';
+print '<h2>taxonomy_images_queried_term_image - unknown image size</h2>';
 print '<pre>' . htmlentities( $img ) . '</pre>';
 
 
 /* Custom attributes. */
-$img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN', array(
 	'attr' => array(
 		'alt'   => 'Custom alternative text',
 		'class' => 'my-class-list bunnies turtles',
@@ -73,7 +73,7 @@ $img = apply_filters( 'taxonomy-images-queried-term-image', 'PLEASE INSTALL PLUG
 		'title' => 'Custom Title',
 		),
 	) );
-print '<h2>taxonomy-images-queried-term-image - custom attributes</h2>';
+print '<h2>taxonomy_images_queried_term_image - custom attributes</h2>';
 print '<pre>' . htmlentities( $img ) . '</pre>';
 
 
@@ -88,9 +88,9 @@ print '<pre>' . htmlentities( $img ) . '</pre>';
  * In the event that the Taxonomy Images plugin is not installed
  * apply_filters() will return it's second parameter.
  */
-$img = apply_filters( 'taxonomy-images-queried-term-image-id', 'PLEASE INSTALL PLUGIN' );
+$img = apply_filters( 'taxonomy_images_queried_term_image_id', 'PLEASE INSTALL PLUGIN' );
 
-print '<h2>taxonomy-images-queried-term-image-id</h2>';
+print '<h2>taxonomy_images_queried_term_image_id</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
@@ -106,9 +106,9 @@ print '<pre>'; var_dump( $img ); print '</pre>';
  * In the event that the Taxonomy Images plugin is not installed
  * apply_filters() will return it's second parameter.
  */
-$img = apply_filters( 'taxonomy-images-queried-term-image-object', 'PLEASE INSTALL PLUGIN' );
+$img = apply_filters( 'taxonomy_images_queried_term_image_object', 'PLEASE INSTALL PLUGIN' );
 
-print '<h2>taxonomy-images-queried-term-image-object</h2>';
+print '<h2>taxonomy_images_queried_term_image_object</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
@@ -127,24 +127,24 @@ print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Default */
-$img = apply_filters( 'taxonomy-images-queried-term-image-url', 'PLEASE INSTALL PLUGIN' );
-print '<h2>taxonomy-images-queried-term-image-url - Default</h2>';
+$img = apply_filters( 'taxonomy_images_queried_term_image_url', 'PLEASE INSTALL PLUGIN' );
+print '<h2>taxonomy_images_queried_term_image_url - Default</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Medium Size */
-$img = apply_filters( 'taxonomy-images-queried-term-image-url', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image_url', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'medium'
 	) );
-print '<h2>taxonomy-images-queried-term-image-url - Medium</h2>';
+print '<h2>taxonomy_images_queried_term_image_url - Medium</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Unregistered Size */
-$img = apply_filters( 'taxonomy-images-queried-term-image-url', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image_url', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'this-is-not-real-size-probably-I-hope'
 	) );
-print '<h2>taxonomy-images-queried-term-image-url - Unregistered</h2>';
+print '<h2>taxonomy_images_queried_term_image_url - Unregistered</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
@@ -163,22 +163,22 @@ print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Default */
-$img = apply_filters( 'taxonomy-images-queried-term-image-data', 'PLEASE INSTALL PLUGIN' );
-print '<h2>taxonomy-images-queried-term-image-data - Default</h2>';
+$img = apply_filters( 'taxonomy_images_queried_term_image_data', 'PLEASE INSTALL PLUGIN' );
+print '<h2>taxonomy_images_queried_term_image_data - Default</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Medium Size */
-$img = apply_filters( 'taxonomy-images-queried-term-image-data', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image_data', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'medium'
 	) );
-print '<h2>taxonomy-images-queried-term-image-data - Medium</h2>';
+print '<h2>taxonomy_images_queried_term_image_data - Medium</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
 
 
 /* Unregistered Size */
-$img = apply_filters( 'taxonomy-images-queried-term-image-data', 'PLEASE INSTALL PLUGIN', array(
+$img = apply_filters( 'taxonomy_images_queried_term_image_data', 'PLEASE INSTALL PLUGIN', array(
 	'image_size' => 'this-is-not-real-size-probably-I-hope'
 	) );
-print '<h2>taxonomy-images-queried-term-image-data - Unregistered</h2>';
+print '<h2>taxonomy_images_queried_term_image_data - Unregistered</h2>';
 print '<pre>'; var_dump( $img ); print '</pre>';
