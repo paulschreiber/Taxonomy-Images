@@ -24,7 +24,8 @@ function taxonomy_images_plugin_shortcode_deprecated( $atts = array() ) {
 	}
 
 	$terms        = get_terms( $taxonomy );
-	$associations = taxonomy_image_plugin_get_associations( $refresh = false );
+	$refresh      = false
+	$associations = taxonomy_image_plugin_get_associations( $refresh );
 
 	if ( ! is_wp_error( $terms ) ) {
 		foreach ( (array) $terms as $term ) {
