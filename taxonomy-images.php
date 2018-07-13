@@ -273,7 +273,7 @@ function taxonomy_image_plugin_settings_sanitize( $dirty ) {
 	if ( isset( $dirty['taxonomies'] ) ) {
 		$taxonomies = get_taxonomies();
 		foreach ( (array) $dirty['taxonomies'] as $taxonomy ) {
-			if ( in_array( $taxonomy, $taxonomies ) ) {
+			if ( in_array( $taxonomy, $taxonomies, true ) ) {
 				$clean['taxonomies'][] = $taxonomy;
 			}
 		}
@@ -413,7 +413,7 @@ function taxonomy_image_plugin_control_taxonomies() {
 		$id = 'taxonomy-images-' . $taxonomy->name;
 
 		$checked = '';
-		if ( isset( $settings['taxonomies'] ) && in_array( $taxonomy->name, (array) $settings['taxonomies'] ) ) {
+		if ( isset( $settings['taxonomies'] ) && in_array( $taxonomy->name, (array) $settings['taxonomies'], true ) ) {
 			$checked = ' checked="checked"';
 		}
 
@@ -903,7 +903,7 @@ add_action( 'admin_print_scripts-media-upload-popup', 'taxonomy_image_plugin_med
  * @access    private
  */
 function taxonomy_image_plugin_edit_tags_js() {
-	if ( false == taxonomy_image_plugin_is_screen_active() ) {
+	if ( false === taxonomy_image_plugin_is_screen_active() ) {
 		return;
 	}
 
@@ -932,7 +932,7 @@ add_action( 'admin_print_scripts-edit-tags.php', 'taxonomy_image_plugin_edit_tag
  * @access    private
  */
 function taxonomy_image_plugin_css_admin() {
-	if ( false == taxonomy_image_plugin_is_screen_active() && 'admin_print_styles-media-upload-popup' != current_filter() ) {
+	if ( false === taxonomy_image_plugin_is_screen_active() && 'admin_print_styles-media-upload-popup' !== current_filter() ) {
 		return;
 	}
 
@@ -955,7 +955,7 @@ add_action( 'admin_print_styles-media-upload-popup', 'taxonomy_image_plugin_css_
  * @access    private
  */
 function taxonomy_image_plugin_css_thickbox() {
-	if ( false == taxonomy_image_plugin_is_screen_active() ) {
+	if ( false === taxonomy_image_plugin_is_screen_active() ) {
 		return;
 	}
 
@@ -1049,7 +1049,7 @@ function taxonomy_image_plugin_is_screen_active() {
 		return false;
 	}
 
-	if ( in_array( $screen->taxonomy, $settings['taxonomies'] ) ) {
+	if ( in_array( $screen->taxonomy, $settings['taxonomies'], true ) ) {
 		return true;
 	}
 
@@ -1105,7 +1105,7 @@ function taxonomy_image_plugin_cache_images( $posts ) {
 			continue;
 		}
 
-		if ( in_array( $assoc[ $tt_id ], $image_ids ) ) {
+		if ( in_array( $assoc[ $tt_id ], $image_ids, true ) ) {
 			continue;
 		}
 
@@ -1177,7 +1177,7 @@ function taxonomy_image_plugin_check_taxonomy( $taxonomy, $filter ) {
 		return false;
 	}
 
-	if ( ! in_array( $taxonomy, (array) $settings['taxonomies'] ) ) {
+	if ( ! in_array( $taxonomy, (array) $settings['taxonomies'], true ) ) {
 		trigger_error(
 			sprintf(
 				esc_html__( 'The %1$s taxonomy does not have image support. %2$s', 'taxonomy-images' ),
@@ -1236,7 +1236,7 @@ function taxonomy_images_plugin_row_meta( $links, $file ) {
 		$plugin_name = plugin_basename( __FILE__ );
 	}
 
-	if ( $plugin_name != $file ) {
+	if ( $plugin_name !== $file ) {
 		return $links;
 	}
 

@@ -546,7 +546,7 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 
 	$data = array();
 
-	if ( in_array( $args['image_size'], array( 'full', 'fullsize' ) ) ) {
+	if ( in_array( $args['image_size'], array( 'full', 'fullsize' ), true ) ) {
 		$src = wp_get_attachment_image_src( $id, 'full' );
 
 		if ( isset( $src[0] ) ) {
