@@ -910,13 +910,13 @@ add_action( 'admin_print_styles-edit-tags.php', 'taxonomy_image_plugin_css_thick
  * insert the following code into your theme's functions.php
  * file:
  *
- * add_filter( 'taxonomy-images-disable-public-css', '__return_true' );
+ * add_filter( 'taxonomy_images_disable_public_css', '__return_true' );
  *
  * @since     0.7
  * @access    private
  */
 function taxonomy_image_plugin_css_public() {
-	if ( apply_filters( 'taxonomy-images-disable-public-css', false ) )
+	if ( apply_filters( 'taxonomy_images_disable_public_css', false ) )
 		return;
 
 	wp_enqueue_style(
