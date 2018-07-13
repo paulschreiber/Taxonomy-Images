@@ -18,15 +18,15 @@
  */
 
 
-add_filter( 'taxonomy_images_get_terms',      'taxonomy_images_plugin_get_terms', 10, 2 );
-add_filter( 'taxonomy_images_get_the_terms',  'taxonomy_images_plugin_get_the_terms', 10, 2 );
+add_filter( 'taxonomy_images_get_terms', 'taxonomy_images_plugin_get_terms', 10, 2 );
+add_filter( 'taxonomy_images_get_the_terms', 'taxonomy_images_plugin_get_the_terms', 10, 2 );
 add_filter( 'taxonomy_images_list_the_terms', 'taxonomy_images_plugin_list_the_terms', 10, 2 );
 
-add_filter( 'taxonomy_images_queried_term_image',        'taxonomy_images_plugin_get_queried_term_image', 10, 2 );
-add_filter( 'taxonomy_images_queried_term_image_data',   'taxonomy_images_plugin_get_queried_term_image_data', 10, 2 );
-add_filter( 'taxonomy_images_queried_term_image_id',     'taxonomy_images_plugin_get_queried_term_image_id' );
+add_filter( 'taxonomy_images_queried_term_image', 'taxonomy_images_plugin_get_queried_term_image', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image_data', 'taxonomy_images_plugin_get_queried_term_image_data', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image_id', 'taxonomy_images_plugin_get_queried_term_image_id' );
 add_filter( 'taxonomy_images_queried_term_image_object', 'taxonomy_images_plugin_get_queried_term_image_object' );
-add_filter( 'taxonomy_images_queried_term_image_url',    'taxonomy_images_plugin_get_queried_term_image_url', 10, 2 );
+add_filter( 'taxonomy_images_queried_term_image_url', 'taxonomy_images_plugin_get_queried_term_image_url', 10, 2 );
 
 
 /**
@@ -72,12 +72,14 @@ function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'cache_images'  => true,
-		'having_images' => true,
-		'taxonomy'      => 'category',
-		'term_args'     => array(),
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'cache_images'  => true,
+			'having_images' => true,
+			'taxonomy'      => 'category',
+			'term_args'     => array(),
+		)
+	);
 
 	$args['taxonomy'] = explode( ',', $args['taxonomy'] );
 	$args['taxonomy'] = array_map( 'trim', $args['taxonomy'] );
@@ -98,15 +100,15 @@ function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
 		return array();
 	}
 
-	$image_ids = array();
+	$image_ids         = array();
 	$terms_with_images = array();
 	foreach ( (array) $terms as $key => $term ) {
-		$terms[$key]->image_id = 0;
+		$terms[ $key ]->image_id = 0;
 		if ( array_key_exists( $term->term_taxonomy_id, $assoc ) ) {
-			$terms[$key]->image_id = $assoc[$term->term_taxonomy_id];
-			$image_ids[] = $assoc[$term->term_taxonomy_id];
+			$terms[ $key ]->image_id = $assoc[ $term->term_taxonomy_id ];
+			$image_ids[]             = $assoc[ $term->term_taxonomy_id ];
 			if ( ! empty( $args['having_images'] ) ) {
-				$terms_with_images[] = $terms[$key];
+				$terms_with_images[] = $terms[ $key ];
 			}
 		}
 	}
@@ -164,11 +166,13 @@ function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'having_images' => true,
-		'post_id'       => 0,
-		'taxonomy'      => 'category',
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'having_images' => true,
+			'post_id'       => 0,
+			'taxonomy'      => 'category',
+		)
+	);
 
 	if ( ! taxonomy_image_plugin_check_taxonomy( $args['taxonomy'], $filter ) ) {
 		return array();
@@ -192,11 +196,11 @@ function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
 
 	$terms_with_images = array();
 	foreach ( (array) $terms as $key => $term ) {
-		$terms[$key]->image_id = 0;
+		$terms[ $key ]->image_id = 0;
 		if ( array_key_exists( $term->term_taxonomy_id, $assoc ) ) {
-			$terms[$key]->image_id = $assoc[$term->term_taxonomy_id];
+			$terms[ $key ]->image_id = $assoc[ $term->term_taxonomy_id ];
 			if ( ! empty( $args['having_images'] ) ) {
-				$terms_with_images[] = $terms[$key];
+				$terms_with_images[] = $terms[ $key ];
 			}
 		}
 	}
@@ -254,15 +258,17 @@ function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'after'        => '</ul>',
-		'after_image'  => '</li>',
-		'before'       => '<ul class="taxonomy-images-the-terms">',
-		'before_image' => '<li>',
-		'image_size'   => 'thumbnail',
-		'post_id'      => 0,
-		'taxonomy'     => 'category',
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'after'        => '</ul>',
+			'after_image'  => '</li>',
+			'before'       => '<ul class="taxonomy-images-the-terms">',
+			'before_image' => '<li>',
+			'image_size'   => 'thumbnail',
+			'post_id'      => 0,
+			'taxonomy'     => 'category',
+		)
+	);
 
 	$args['having_images'] = true;
 
@@ -277,13 +283,13 @@ function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
 	}
 
 	$output = '';
-	foreach( $terms as $term ) {
+	foreach ( $terms as $term ) {
 		if ( ! isset( $term->image_id ) ) {
 			continue;
 		}
 		$image = wp_get_attachment_image( $term->image_id, $args['image_size'] );
 		if ( ! empty( $image ) ) {
-			$output .= $args['before_image'] . '<a href="' . esc_url( get_term_link( $term, $term->taxonomy ) ) . '">' . $image .'</a>' . $args['after_image'];
+			$output .= $args['before_image'] . '<a href="' . esc_url( get_term_link( $term, $term->taxonomy ) ) . '">' . $image . '</a>' . $args['after_image'];
 		}
 	}
 
@@ -328,12 +334,14 @@ function taxonomy_images_plugin_get_queried_term_image( $default, $args = array(
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'after'      => '',
-		'attr'       => array(),
-		'before'     => '',
-		'image_size' => 'thumbnail',
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'after'      => '',
+			'attr'       => array(),
+			'before'     => '',
+			'image_size' => 'thumbnail',
+		)
+	);
 
 	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
@@ -382,11 +390,14 @@ function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
 
 	/* Return early is we are not in a term archive. */
 	if ( ! isset( $obj->term_taxonomy_id ) ) {
-		trigger_error( sprintf( esc_html__( '%1$s is not a property of the current queried object. This usually happens when the %2$s filter is used in an unsupported template file. This filter has been designed to work in taxonomy archives which are traditionally served by one of the following template files: category.php, tag.php or taxonomy.php. Learn more about %3$s.', 'taxonomy-images' ),
-			'<code>' . esc_html__( 'term_taxonomy_id', 'taxonomy-images' ) . '</code>',
-			'<code>' . esc_html( $filter ) . '</code>',
-			'<a href="http://codex.wordpress.org/Template_Hierarchy">' . esc_html( 'template hierarchy', 'taxonomy-images' ) . '</a>'
-			) );
+		trigger_error(
+			sprintf(
+				esc_html__( '%1$s is not a property of the current queried object. This usually happens when the %2$s filter is used in an unsupported template file. This filter has been designed to work in taxonomy archives which are traditionally served by one of the following template files: category.php, tag.php or taxonomy.php. Learn more about %3$s.', 'taxonomy-images' ),
+				'<code>' . esc_html__( 'term_taxonomy_id', 'taxonomy-images' ) . '</code>',
+				'<code>' . esc_html( $filter ) . '</code>',
+				'<a href="http://codex.wordpress.org/Template_Hierarchy">' . esc_html( 'template hierarchy', 'taxonomy-images' ) . '</a>'
+			)
+		);
 		return 0;
 	}
 
@@ -395,11 +406,11 @@ function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
 	}
 
 	$associations = taxonomy_image_plugin_get_associations();
-	$tt_id = absint( $obj->term_taxonomy_id );
+	$tt_id        = absint( $obj->term_taxonomy_id );
 
 	$ID = 0;
 	if ( array_key_exists( $tt_id, $associations ) ) {
-		$ID = absint( $associations[$tt_id] );
+		$ID = absint( $associations[ $tt_id ] );
 	}
 
 	return $ID;
@@ -473,9 +484,11 @@ function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = ar
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'image_size' => 'thumbnail',
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'image_size' => 'thumbnail',
+		)
+	);
 
 	$data = apply_filters( 'taxonomy_images_queried_term_image_data', array(), $args );
 
@@ -519,9 +532,11 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$args = wp_parse_args( $args, array(
-		'image_size' => 'thumbnail',
-		) );
+	$args = wp_parse_args(
+		$args, array(
+			'image_size' => 'thumbnail',
+		)
+	);
 
 	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
@@ -543,8 +558,7 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 		if ( isset( $src[2] ) ) {
 			$data['height'] = $src[2];
 		}
-	}
-	else {
+	} else {
 		$data = image_get_intermediate_size( $ID, $args['image_size'] );
 	}
 
