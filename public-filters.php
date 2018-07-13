@@ -343,13 +343,13 @@ function taxonomy_images_plugin_get_queried_term_image( $default, $args = array(
 		)
 	);
 
-	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
+	$id = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
-	if ( empty( $ID ) ) {
+	if ( empty( $id ) ) {
 		return '';
 	}
 
-	$html = wp_get_attachment_image( $ID, $args['image_size'], false, $args['attr'] );
+	$html = wp_get_attachment_image( $id, $args['image_size'], false, $args['attr'] );
 
 	if ( empty( $html ) ) {
 		return '';
@@ -408,12 +408,12 @@ function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
 	$associations = taxonomy_image_plugin_get_associations();
 	$tt_id        = absint( $obj->term_taxonomy_id );
 
-	$ID = 0;
+	$id = 0;
 	if ( array_key_exists( $tt_id, $associations ) ) {
-		$ID = absint( $associations[ $tt_id ] );
+		$id = absint( $associations[ $tt_id ] );
 	}
 
-	return $ID;
+	return $id;
 }
 
 
@@ -444,11 +444,11 @@ function taxonomy_images_plugin_get_queried_term_image_object( $default ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
-	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
+	$id = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
 	$image = new stdClass;
-	if ( ! empty( $ID ) ) {
-		$image = get_post( $ID );
+	if ( ! empty( $id ) ) {
+		$image = get_post( $id );
 	}
 	return $image;
 }
@@ -538,16 +538,16 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 		)
 	);
 
-	$ID = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
+	$id = apply_filters( 'taxonomy_images_queried_term_image_id', 0 );
 
-	if ( empty( $ID ) ) {
+	if ( empty( $id ) ) {
 		return array();
 	}
 
 	$data = array();
 
 	if ( in_array( $args['image_size'], array( 'full', 'fullsize' ) ) ) {
-		$src = wp_get_attachment_image_src( $ID, 'full' );
+		$src = wp_get_attachment_image_src( $id, 'full' );
 
 		if ( isset( $src[0] ) ) {
 			$data['url'] = $src[0];
@@ -559,7 +559,7 @@ function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = a
 			$data['height'] = $src[2];
 		}
 	} else {
-		$data = image_get_intermediate_size( $ID, $args['image_size'] );
+		$data = image_get_intermediate_size( $id, $args['image_size'] );
 	}
 
 	if ( ! empty( $data ) ) {
