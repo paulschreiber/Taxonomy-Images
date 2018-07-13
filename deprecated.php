@@ -64,7 +64,7 @@ add_shortcode( 'taxonomy_image_plugin', 'taxonomy_images_plugin_shortcode_deprec
  *
  * @access     private        This class is deprecated. Do not use!!!
  */
-class taxonomy_images_plugin {
+class Taxonomy_Images_Plugin {
 	public $settings = array();
 	public function __construct() {
 		$this->settings = taxonomy_image_plugin_get_associations();
@@ -100,4 +100,4 @@ class taxonomy_images_plugin {
 		return $o;
 	}
 }
-$taxonomy_images_plugin = new taxonomy_images_plugin();
+$taxonomy_images_plugin = new Taxonomy_Images_Plugin();
