@@ -445,7 +445,7 @@ function taxonomy_image_plugin_json_response( $args ) {
 		)
 	);
 	header( 'Content-type: application/jsonrequest' );
-	print json_encode( $response );
+	print wp_json_encode( $response );
 	exit;
 }
 
