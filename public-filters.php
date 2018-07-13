@@ -68,7 +68,7 @@ add_filter( 'taxonomy_images_queried_term_image_url', 'taxonomy_images_plugin_ge
  */
 function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
 	$filter = 'taxonomy_images_get_terms';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -162,7 +162,7 @@ function taxonomy_images_plugin_get_terms( $default, $args = array() ) {
  */
 function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
 	$filter = 'taxonomy_images_get_the_terms';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -254,7 +254,7 @@ function taxonomy_images_plugin_get_the_terms( $default, $args = array() ) {
  */
 function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
 	$filter = 'taxonomy_images_list_the_terms';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -330,7 +330,7 @@ function taxonomy_images_plugin_list_the_terms( $default, $args = array() ) {
  */
 function taxonomy_images_plugin_get_queried_term_image( $default, $args = array() ) {
 	$filter = 'taxonomy_images_queried_term_image';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -382,7 +382,7 @@ function taxonomy_images_plugin_get_queried_term_image( $default, $args = array(
  */
 function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
 	$filter = 'taxonomy_images_queried_term_image_id';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -440,7 +440,7 @@ function taxonomy_images_plugin_get_queried_term_image_id( $default ) {
  */
 function taxonomy_images_plugin_get_queried_term_image_object( $default ) {
 	$filter = 'taxonomy_images_queried_term_image_object';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -480,7 +480,7 @@ function taxonomy_images_plugin_get_queried_term_image_object( $default ) {
  */
 function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = array() ) {
 	$filter = 'taxonomy_images_queried_term_image_url';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 
@@ -528,7 +528,7 @@ function taxonomy_images_plugin_get_queried_term_image_url( $default, $args = ar
  */
 function taxonomy_images_plugin_get_queried_term_image_data( $default, $args = array() ) {
 	$filter = 'taxonomy_images_queried_term_image_data';
-	if ( $filter !== current_filter() ) {
+	if ( current_filter() !== $filter ) {
 		taxonomy_image_plugin_please_use_filter( __FUNCTION__, $filter );
 	}
 

@@ -38,7 +38,7 @@ function taxonomy_images_plugin_shortcode_deprecated( $atts = array() ) {
 				$img = wp_get_attachment_image( $associations[ $term->term_taxonomy_id ], 'detail', false );
 			}
 
-			if ( $template === 'grid' ) {
+			if ( 'grid' === $template ) {
 				$o .= "\n\t" . '<div class="taxonomy_image_plugin-' . $template . '">';
 				$o .= "\n\t\t" . '<a style="float:left;" title="' . $title_attr . '" href="' . $url . '">' . $img . '</a>';
 				$o .= "\n\t" . '</div>';
@@ -93,7 +93,7 @@ class taxonomy_images_plugin {
 			$alt           = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 			$attachment    = get_post( $attachment_id );
 			/* Just in case an attachment was deleted, but there is still a record for it in this plugins settings. */
-			if ( $attachment !== null ) {
+			if ( null !== $attachment ) {
 				$o = get_image_tag( $attachment_id, $alt, '', $align, $size );
 			}
 		}
