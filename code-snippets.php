@@ -38,7 +38,7 @@ add_filter( 'the_excerpt', 'mytheme_append_the_term_images' );
 /* Default */
 $img = apply_filters( 'taxonomy_images_queried_term_image', 'PLEASE INSTALL PLUGIN' );
 print '<h2>taxonomy_images_queried_term_image</h2>';
-print '<pre>' . htmlentities( $img ) . '</pre>';
+print '<pre>' . esc_html( htmlenties( $img ) ) . '</pre>';
 
 
 /* Inside a yellow box */
@@ -49,7 +49,7 @@ $img = apply_filters(
 	)
 );
 print '<h2>taxonomy_images_queried_term_image - custom wrapper element.</h2>';
-print '<pre>' . htmlentities( $img ) . '</pre>';
+print '<pre>' . esc_html( htmlenties( $img ) )) . '</pre>';
 
 
 /* Medium Size */
@@ -59,7 +59,7 @@ $img = apply_filters(
 	)
 );
 print '<h2>taxonomy_images_queried_term_image - medium image size</h2>';
-print '<pre>' . htmlentities( $img ) . '</pre>';
+print '<pre>' . esc_html( htmlenties( $img ) ) . '</pre>';
 
 
 /* Unrecognized size */
@@ -69,7 +69,7 @@ $img = apply_filters(
 	)
 );
 print '<h2>taxonomy_images_queried_term_image - unknown image size</h2>';
-print '<pre>' . htmlentities( $img ) . '</pre>';
+print '<pre>' . esc_html( htmlenties( $img ) ) . '</pre>';
 
 
 /* Custom attributes. */
@@ -84,7 +84,7 @@ $img = apply_filters(
 	)
 );
 print '<h2>taxonomy_images_queried_term_image - custom attributes</h2>';
-print '<pre>' . htmlentities( $img ) . '</pre>';
+print '<pre>' . esc_html( htmlenties( $img ) ) . '</pre>';
 
 
 

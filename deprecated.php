@@ -74,7 +74,7 @@ class taxonomy_images_plugin {
 		return taxonomy_image_plugin_get_image_src( $id );
 	}
 	public function print_image_html( $size = 'medium', $term_tax_id = false, $title = true, $align = 'none' ) {
-		print $this->get_image_html( $size, $term_tax_id, $title, $align );
+		print wp_kses_post( $this->get_image_html( $size, $term_tax_id, $title, $align ) );
 	}
 	public function get_image_html( $size = 'medium', $term_tax_id = false, $title = true, $align = 'none' ) {
 		$o = '';

@@ -412,13 +412,17 @@ function taxonomy_image_plugin_control_taxonomies() {
 
 		$id = 'taxonomy-images-' . $taxonomy->name;
 
-		$checked = '';
+		$checked = false;
 		if ( isset( $settings['taxonomies'] ) && in_array( $taxonomy->name, (array) $settings['taxonomies'], true ) ) {
-			$checked = ' checked="checked"';
+			$checked = true;
 		}
 
 		print "\n" . '<p><label for="' . esc_attr( $id ) . '">';
-		print '<input' . $checked . ' id="' . esc_attr( $id ) . '" type="checkbox" name="taxonomy_image_plugin_settings[taxonomies][]" value="' . esc_attr( $taxonomy->name ) . '">';
+		print '<input';
+		if ( $checked ) {
+			print ' checked="checked"';
+		}
+		print ' id="' . esc_attr( $id ) . '" type="checkbox" name="taxonomy_image_plugin_settings[taxonomies][]" value="' . esc_attr( $taxonomy->name ) . '">';
 		print ' ' . esc_html( $taxonomy->label ) . '</label></p>';
 	}
 }
@@ -807,7 +811,7 @@ function taxonomy_image_plugin_edit_tag_form( $term, $taxonomy ) {
 	<tr class="form-field hide-if-no-js">
 		<th scope="row" valign="top"><label for="description"><?php print esc_html__( 'Image', 'taxonomy-images' ); ?></label></th>
 		<td>
-			<?php print taxonomy_image_plugin_control_image( $term->term_id, $taxonomy->name ); ?>
+			<?php print taxonomy_image_plugin_control_image( $term->term_id, $taxonomy->name ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 			<div class="clear"></div>
 			<span class="description"><?php printf( esc_html__( 'Associate an image from your media library to this %1$s.', 'taxonomy-images' ), esc_html( $name ) ); ?></span>
 		</td>
@@ -1173,16 +1177,25 @@ function taxonomy_image_plugin_check_taxonomy( $taxonomy, $filter ) {
 	$settings = get_option( 'taxonomy_image_plugin_settings' );
 
 	if ( ! isset( $settings['taxonomies'] ) ) {
-		trigger_error( sprintf( esc_html__( 'No taxonomies have image support. %1$s', 'taxonomy-images' ), taxonomy_images_plugin_settings_page_link() ) );
+		trigger_error(
+			esc_html(
+				sprintf(
+					__( 'No taxonomies have image support. %1$s', 'taxonomy-images' )
+					 taxonomy_images_plugin_settings_page_link()
+				)
+			)
+		);
 		return false;
 	}
 
 	if ( ! in_array( $taxonomy, (array) $settings['taxonomies'], true ) ) {
 		trigger_error(
-			sprintf(
-				esc_html__( 'The %1$s taxonomy does not have image support. %2$s', 'taxonomy-images' ),
-				'<strong>' . esc_html( $taxonomy ) . '</strong>',
-				taxonomy_images_plugin_settings_page_link()
+			esc_html(
+				sprintf(
+					__( 'The %1$s taxonomy does not have image support. %2$s', 'taxonomy-images' ),
+					'<strong>' . esc_html( $taxonomy ) . '</strong>',
+					taxonomy_images_plugin_settings_page_link()
+				)
 			)
 		);
 		return false;
